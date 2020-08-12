@@ -1,23 +1,26 @@
 import Vue from 'vue';
 import { sync } from 'vuex-router-sync';
+import { VueRouter } from 'vue-router/types/router';
+import { Store } from 'vuex';
 import App from './App.vue';
 import createStore from './store';
 import createRouter from './router';
 import titleMixin from './util/title';
+import { RootState } from './types';
 
-if (process.browser) {
-    const VueAwesomeSwiper = import('vue-awesome-swiper/dist/ssr');
-    Vue.use(VueAwesomeSwiper);
-}
+// if (process.browser) {
+//     const VueAwesomeSwiper = import('vue-awesome-swiper/dist/ssr');
+//     Vue.use(VueAwesomeSwiper);
+// }
 
 Vue.mixin(titleMixin);
 
 // Expose a factory function that creates a fresh set of store, router,
 // app instances on each call (which is called for each SSR request)
-export default function createApp() {
+export default function createApp():Record<string, unknown> {
     // create store and router instances
-    const store = createStore();
-    const router = createRouter();
+    const store: Store<RootState> = createStore;
+    const router: VueRouter = createRouter;
 
     // sync the router with the vuex store.
     // this registers `store.state.route`
@@ -26,7 +29,7 @@ export default function createApp() {
     // create the app instance.
     // here we inject the router, store and ssr context to all child components,
     // making them available everywhere as `this.$router` and `this.$store`.
-    const app = new Vue({
+    const app:Vue = new Vue({
         router,
         store,
         render: h => h(App),

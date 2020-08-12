@@ -31,7 +31,8 @@ module.exports = {
     resolve: {
         alias: {
             public: path.resolve(__dirname, '../public')
-        }
+        },
+        extensions: ['.ts', '.js']
     },
     module: {
         noParse: /es6-promise\.js$/, // avoid webpack shimming process

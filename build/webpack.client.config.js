@@ -6,7 +6,7 @@ const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 require('@babel/polyfill')
 const config = merge(base, {
   entry: {
-    app: './src/entry-client.js'
+    app: './src/entry-client.ts'
   },
   resolve: {
     alias: {

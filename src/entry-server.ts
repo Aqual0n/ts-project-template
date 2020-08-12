@@ -7,7 +7,7 @@ import createApp from './app';
 // state of our application before actually rendering it.
 // Since data fetching is async, this function is expected to
 // return a Promise that resolves to the app instance.
-export default context => new Promise((resolve, reject) => {
+export default (context:Record<string, unknown>) => new Promise((resolve, reject) => {
     // const s = isDev && Date.now()
     const { app, router, store } = createApp();
 

@@ -4,6 +4,8 @@
         +e.container.container
             p {{headerText}}
             p {{firstSecond}}
+            p {{$store.getters.foo}}
+            p {{$store.getters.bar}}
 </template>
 
 <script lang="ts">
@@ -18,7 +20,7 @@ export default class TheHeader extends Vue {
 
     test2 = 'second';
 
-    get firstSecond() {
+    get firstSecond() : string {
         return `${this.test1} ${this.test2}`;
     }
 }
