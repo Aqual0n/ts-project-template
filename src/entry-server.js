@@ -1,4 +1,4 @@
-import createApp from './app'
+import createApp from './app';
 
 // const isDev = process.env.NODE_ENV !== 'production'
 
@@ -9,24 +9,24 @@ import createApp from './app'
 // return a Promise that resolves to the app instance.
 export default context => new Promise((resolve, reject) => {
     // const s = isDev && Date.now()
-    const { app, router, store } = createApp()
+    const { app, router, store } = createApp();
 
-    const { url } = context
-    const { fullPath } = router.resolve(url).route
+    const { url } = context;
+    const { fullPath } = router.resolve(url).route;
 
     if (fullPath !== url) {
-        return reject(new Error(`url: ${fullPath}`))
+        return reject(new Error(`url: ${fullPath}`));
     }
 
     // set router's location
-    router.push(url)
+    router.push(url);
 
     // wait until router has resolved possible async hooks
     router.onReady(() => {
-        const matchedComponents = router.getMatchedComponents()
+        const matchedComponents = router.getMatchedComponents();
         // no matched routes
         if (!matchedComponents.length) {
-            return reject(new Error('code: 404'))
+            return reject(new Error('code: 404'));
         }
         // Call fetchData hooks on components matched by the route.
         // A preFetch hook dispatches a store action and returns a Promise,
@@ -34,7 +34,7 @@ export default context => new Promise((resolve, reject) => {
         // updated.
         Promise.all(matchedComponents.map(({ asyncData }) => asyncData && asyncData({
             store,
-            route: router.currentRoute
+            route: router.currentRoute,
         }))).then(() => {
             // isDev && console.log(`data pre-fetch: ${Date.now() - s}ms`)
             // After all preFetch hooks are resolved, our store is now
@@ -43,8 +43,8 @@ export default context => new Promise((resolve, reject) => {
             // inline the state in the HTML response. This allows the client-side
             // store to pick-up the server-side state without having to duplicate
             // the initial data fetching on the client.
-            context.state = store.state
-            resolve(app)
-        }).catch(reject)
-    }, reject)
-})
+            context.state = store.state;
+            resolve(app);
+        }).catch(reject);
+    }, reject);
+});

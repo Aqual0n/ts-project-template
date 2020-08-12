@@ -1,19 +1,19 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 
-import Index from '../components/pages/Index.vue'
+import Index from '../components/pages/Index.vue';
 
-import Privacy from '../components/pages/Privacy.vue'
+import Privacy from '../components/pages/Privacy.vue';
 
-import NotFound from '../components/pages/NotFound.vue'
+import NotFound from '../components/pages/NotFound.vue';
 
-Vue.use(Router)
+Vue.use(Router);
 
-export default function createRouter () {
+export default function createRouter() {
     return new Router({
         mode: 'history',
         fallback: false,
-        scrollBehavior: () => ({ y: 0 }),
+        scrollBehavior: () => ({ x: 0, y: 0 }),
         routes: [
             {
                 path: '',
@@ -22,8 +22,8 @@ export default function createRouter () {
                 meta: {
                     language: 'ru',
                     type: 'main',
-                    animation: 'slice'
-                }
+                    animation: 'slice',
+                },
             },
 
             {
@@ -32,8 +32,8 @@ export default function createRouter () {
                 component: Privacy,
                 meta: {
                     language: 'ru',
-                    type: 'privacy'
-                }
+                    type: 'privacy',
+                },
             },
             {
                 path: '*',
@@ -42,9 +42,9 @@ export default function createRouter () {
                 meta: {
                     title: '404',
                     language: 'ru',
-                    type: '404'
-                }
-            }
-        ]
-    })
+                    type: '404',
+                },
+            },
+        ],
+    });
 }

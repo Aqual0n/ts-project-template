@@ -1,16 +1,25 @@
 <template lang="pug">
     include ../../tools/mixins.pug
     +b.HEADER.header
-        p Header
+        +e.container.container
+            p {{headerText}}
+            p {{firstSecond}}
 </template>
 
-<script>
+<script lang="ts">
 
-export default {
-    data () {
-        return {
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
-        }
+@Component
+export default class TheHeader extends Vue {
+    @Prop() private headerText!:string;
+
+    test1 = 'first';
+
+    test2 = 'second';
+
+    get firstSecond() {
+        return `${this.test1} ${this.test2}`;
     }
 }
 </script>

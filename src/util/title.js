@@ -1,59 +1,59 @@
-function getTitle (vm) {
-    const { title } = vm.$options
+function getTitle(vm) {
+    const { title } = vm.$options;
     if (title) {
         return typeof title === 'function'
             ? title.call(vm)
-            : title
+            : title;
     }
-    return false
+    return false;
 }
 
-function getMeta (vm) {
-    const { meta } = vm.$options
+function getMeta(vm) {
+    const { meta } = vm.$options;
     if (meta) {
         return typeof meta === 'function'
             ? meta.call(vm)
-            : meta
+            : meta;
     }
-    return false
+    return false;
 }
 
-function getBrowser (vm) {
-    const { browser } = vm.$options
+function getBrowser(vm) {
+    const { browser } = vm.$options;
     if (browser) {
         return typeof browser === 'function'
             ? browser.call(vm)
-            : browser
+            : browser;
     }
-    return false
+    return false;
 }
 
 const serverTitleMixin = {
-    created () {
-        const title = getTitle(this)
-        const meta = getMeta(this)
-        const browser = getBrowser(this)
+    created() {
+        const title = getTitle(this);
+        const meta = getMeta(this);
+        const browser = getBrowser(this);
         if (title) {
-            this.$ssrContext.title = `С-Электротранспорт | ${title}`
+            this.$ssrContext.title = `С-Электротранспорт | ${title}`;
         }
         if (meta) {
-            this.$ssrContext.meta = `${meta}`
+            this.$ssrContext.meta = `${meta}`;
         }
         if (browser) {
-            this.$ssrContext.browser = `${browser}`
+            this.$ssrContext.browser = `${browser}`;
         }
-    }
-}
+    },
+};
 
 const clientTitleMixin = {
-    mounted () {
-        const title = getTitle(this)
+    mounted() {
+        const title = getTitle(this);
         if (title) {
-            document.title = `С-Электротранспорт | ${title}`
+            document.title = `С-Электротранспорт | ${title}`;
         }
-    }
-}
+    },
+};
 
 export default process.env.VUE_ENV === 'server'
     ? serverTitleMixin
-    : clientTitleMixin
+    : clientTitleMixin;

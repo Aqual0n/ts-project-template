@@ -1,13 +1,14 @@
 const path = require('path')
 const webpack = require('webpack')
 // const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-const {VueLoaderPlugin} = require('vue-loader')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
-const isProd = process.env.NODE_ENV === 'production';
+const { VueLoaderPlugin } = require('vue-loader')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const StyleLintPlugin = require('stylelint-webpack-plugin')
+
+const isProd = process.env.NODE_ENV === 'production'
 module.exports = {
     mode: isProd
         ? 'production'
@@ -29,7 +30,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            'public': path.resolve(__dirname, '../public')
+            public: path.resolve(__dirname, '../public')
         }
     },
     module: {
@@ -43,19 +44,19 @@ module.exports = {
                         plugins: [
                             { collapseGroups: false },
                             { removeEmptyContainers: false },
-                            {cleanupIDs: false},
-                            {removeViewBox: false},
-                        ],
-                    },
-                },
+                            { cleanupIDs: false },
+                            { removeViewBox: false }
+                        ]
+                    }
+                }
             },
             {
                 test: /\.css$/,
                 use: [
                     'vue-style-loader',
-                    'css-loader',
+                    'css-loader'
 
-                ],
+                ]
             },
             {
                 enforce: 'pre',
@@ -77,16 +78,25 @@ module.exports = {
 
             {
                 enforce: 'pre',
-                test: /\.js$/,
+                test: /\.(js|tsx?)$/,
                 loader: 'eslint-loader',
                 options: {
                     fix: true
                 }
             },
             {
-                test: /\.js$/,
+                test: /\.(js|tsx?)$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
+                loader: 'babel-loader'
+            },
+            {
+                test: /\.tsx?$/,
+                loader: 'ts-loader',
+                options: {
+                    transpileOnly: true,
+                    appendTsSuffixTo: [/\.vue$/]
+                },
+                exclude: /node_modules/
             },
             {
                 test: /\.(png|jpg|gif)$/,
@@ -99,8 +109,7 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: isProd
-                    ?
-                    [
+                    ? [
                         MiniCssExtractPlugin.loader,
                         'css-loader',
                         {
