@@ -6,14 +6,19 @@
             p {{firstSecond}}
             p {{$store.getters.foo}}
             p {{$store.getters.bar}}
+            p mobile: {{deviceSize.mobile}}
+            p tablet: {{deviceSize.tablet}}
+            p desktop: {{deviceSize.desktop}}
 </template>
 
 <script lang="ts">
 
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
+import { mixins } from 'vue-class-component';
+import DeviceSize from '../../mixins/utility/deviceSize';
 
 @Component
-export default class TheHeader extends Vue {
+export default class TheHeader extends mixins(DeviceSize) {
     @Prop() private headerText!:string;
 
     test1 = 'first';

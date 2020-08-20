@@ -38,6 +38,7 @@ module.exports = {
         'vue/custom-event-name-casing': 'off',
         'no-return-assign': 'off',
         'import/extensions': 'off',
-        'import/no-unresolved': 'off'
+        'import/no-unresolved': 'off',
+        'no-param-reassign': 'off'
     }
 }

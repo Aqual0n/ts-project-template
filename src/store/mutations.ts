@@ -3,8 +3,10 @@
 import { MutationTree } from 'vuex';
 import { RootState } from '../types';
 
-export const mutations : MutationTree<RootState> = {
+const mutations : MutationTree<RootState> = {
     setBar(state, newValue : number) {
         state.bar = newValue;
     },
 };
+
+export default mutations;
