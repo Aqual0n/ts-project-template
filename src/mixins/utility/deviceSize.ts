@@ -19,7 +19,6 @@ export default class DeviceSize extends Vue {
     }
 
     getDeviceSize() : void {
-        console.log(1);
         this.deviceSize.mobile = window.innerWidth < 650;
         this.deviceSize.tablet = window.innerWidth >= 650 && window.innerWidth < 1200;
         this.deviceSize.tablet768 = window.innerWidth >= 768 && window.innerWidth < 1200;

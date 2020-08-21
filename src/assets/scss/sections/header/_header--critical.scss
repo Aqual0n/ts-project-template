@@ -1,0 +1,35 @@
+.header {
+    &__fixed {
+        position: fixed;
+        right: 0;
+        top: 0;
+        color: #fff;
+        padding: toRem(24);
+        min-width: toRem(240);
+        background-color: #000;
+    }
+
+    &__container {
+        padding-top: 100vh;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 100vw;
+            height: 5px;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: block;
+            background-color: red;
+        }
+    }
+
+    &__button {
+        padding: toRem(8);
+        background-color: #fff;
+        color: #000;
+        margin-top: toRem(8);
+    }
+}
